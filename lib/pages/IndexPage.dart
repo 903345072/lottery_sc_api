@@ -17,7 +17,7 @@ import 'package:flutterapp2/pages/pailie.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import 'package:flutterapp2/wiget/CommonWiget.dart';
-import 'package:marquee_flutter/marquee_flutter.dart';
+
 
 import 'basketball.dart';
 import 'football.dart';

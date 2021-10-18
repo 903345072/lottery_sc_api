@@ -235,8 +235,12 @@ class Login_ extends State<recharge> {
                       if(res.code == 200){
                         int type_ = data["type"];
                         if(type_ == 1){
-                          print(data);
-                          Future s=   tobias.aliPay(data['url']) ;
+                          var result = await  tobias.aliPay(data["data"]["url"]);
+//                          var result = await SyFlutterAlipay.pay(
+//                              data['url'],
+//                              urlScheme: '你的ios urlScheme', //前面配置的urlScheme
+//                              isSandbox: true //是否是沙箱环境，只对android有效
+//                          );
                         }else{
                           JumpAnimation().jump(pay(data["data"]), context);
                         }
