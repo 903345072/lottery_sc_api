@@ -40,9 +40,9 @@ class Login_ extends State<sendOrder> {
   String new_pwd;
   String re_pwd;
   bool check = false;
-  double min_yj = 5;
+  double min_yj = 1;
   double max_yj = 10;
-  double yj = 5;
+  double yj = 1;
   int start_money;
   int self_money;
   String plan_title;
@@ -413,6 +413,11 @@ class Login_ extends State<sendOrder> {
                     ),
                     GestureDetector(
                       onTap: (){
+                        if(min_pl<=0){
+                          Toast.toast(context,
+                              msg: "保赔必须大于0");
+                          return;
+                        }
                          EventDioLog("提示","确认付款",context,() async {
                            ResultData res =
                                await HttpManager.getInstance()

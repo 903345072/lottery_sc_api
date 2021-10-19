@@ -57,16 +57,16 @@ class editCard_ extends State<editCard> {
     _commentFocus = FocusNode();
     phoneData = {
       "value": "",
-      "title": "手机号码",
-      "tip": "请输入绑定关联手机号码",
+      "title": "支付宝账号",
+      "tip": "请输入支付宝账号",
       "icon": Icon(Icons.phone_iphone, color: Colors.red),
       "is_edit": false,
-      "type":"number"
+      "type":null
     };
     realName = {
       "value": "",
       "title": "真实姓名",
-      "tip": "请输入银行卡开户名",
+      "tip": "请输入真实姓名",
       "icon": Icon(Icons.person, color: Colors.red),
       "is_edit": false,
       "type":null
@@ -111,36 +111,16 @@ class editCard_ extends State<editCard> {
         .get("user/card_info", withLoading: false);
     if (result.data["bank_info"] != null) {
       setState(() {
-        _controller.text = result.data["bank_info"]["real_name"];
-        _controller2.text = result.data["bank_info"]["bank_name"];
-        _controller3.text = result.data["bank_info"]["bank_name"];
+
+
         phoneData["value"] = result.data["bank_info"]["phone"];
         phoneData["tag_value"] = result.data["bank_info"]["phone"];
+        _controller.text = result.data["bank_info"]["real_name"];
+        _controller2.text = result.data["bank_info"]["phone"];
         realName["value"] = result.data["bank_info"]["real_name"];
         realName["tag_value"] = result.data["bank_info"]["real_name"];
-        if(result.data["bank_info"]["id_card"] != null){
-          idCard["value"] = result.data["bank_info"]["id_card"].toString();
-          _controller4.text = result.data["bank_info"]["id_card"].toString().replaceRange(6, result.data["bank_info"]["id_card"].toString().length-4, "*"*(result.data["bank_info"]["id_card"].toString().length-10));
-       real_id = result.data["bank_info"]["id_card"].toString();
-        }else{
-          idCard["value"] = "";
-        }
 
-        if(result.data["bank_info"]["bank_card"] != null){
-          _controller5.text = result.data["bank_info"]["bank_card"].toString().replaceRange(6, result.data["bank_info"]["bank_card"].toString().length-4, "*"*(result.data["bank_info"]["bank_card"].toString().length-10));
-          real_bank = result.data["bank_info"]["bank_card"].toString();
 
-          bankCard["value"] =  result.data["bank_info"]["bank_card"].toString();
-        }else{
-          bankCard["value"] = "";
-        }
-        idCard["tag_value"] = result.data["bank_info"]["id_card"];
-        bankName["value"] = result.data["bank_info"]["bank_name"];
-        bankName["tag_value"] = result.data["bank_info"]["bank_name"];
-        branchName["value"] = result.data["bank_info"]["bank_branch"];
-        branchName["tag_value"] = result.data["bank_info"]["bank_branch"];
-
-        bankCard["tag_value"] = result.data["bank_info"]["bank_card"];
       });
     }else{
       _controller.text = "";
@@ -186,13 +166,34 @@ class editCard_ extends State<editCard> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                IconInput(
-                  data: phoneData,
-                  callBack: (value) {
-                    setState(() {
-                      phoneData["value"] = value;
-                    });
-                  },
+                Container(
+                  height: ScreenUtil().setHeight(50),
+                  margin: EdgeInsets.only(left: 5, top: 15, right: 5),
+
+                  child: Row(
+                    children: <Widget>[
+
+                      Expanded(
+                        child: TextField(
+                          onChanged: (e) {
+                            setState(() {
+                              phoneData["value"] = e;
+                            });
+
+                          },
+                          controller: _controller2,
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.only(left: 10),
+                            hintText:phoneData["tip"],
+                            prefixIcon: phoneData["icon"],
+
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Container(
                   height: ScreenUtil().setHeight(50),
@@ -223,110 +224,7 @@ class editCard_ extends State<editCard> {
                     ],
                   ),
                 ),
-                Container(
-                  height: ScreenUtil().setHeight(50),
-                  margin: EdgeInsets.only(left: 5, top: 15, right: 5),
 
-                  child: Row(
-                    children: <Widget>[
-
-                      Expanded(
-                        child: TextField(
-
-                          onTap: (){
-                            _controller4.text = real_id;
-                          },
-                          onChanged: (e) {
-
-                            setState(() {
-                             idCard["value"] = _controller4.text;
-                             real_id = e;
-
-
-                            });
-
-                          },
-
-                          controller: _controller4,
-                          decoration: InputDecoration(
-                            hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.only(left: 10),
-                            hintText:idCard["tip"],
-                            prefixIcon: idCard["icon"],
-
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  height: ScreenUtil().setHeight(50),
-                  margin: EdgeInsets.only(left: 5, top: 15, right: 5),
-
-                  child: Row(
-                    children: <Widget>[
-
-                      Expanded(
-                        child: TextField(
-                          onChanged: (e) {
-                            setState(() {
-                              bankName["value"] = e;
-                            });
-
-                          },
-                          controller: _controller3,
-                          decoration: InputDecoration(
-                            hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.only(left: 10),
-                            hintText:bankName["tip"],
-                            prefixIcon: bankName["icon"],
-
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-
-                Container(
-                  height: ScreenUtil().setHeight(50),
-                  margin: EdgeInsets.only(left: 5, top: 15, right: 5),
-
-                  child: Row(
-                    children: <Widget>[
-
-                      Expanded(
-                        child: TextField(
-
-                          onTap: (){
-                            _controller5.text = real_bank;
-                          },
-                          onChanged: (e) {
-
-                            setState(() {
-                              bankCard["value"] = _controller5.text;
-                              real_bank = e;
-                            });
-
-                          },
-
-                          controller: _controller5,
-                          decoration: InputDecoration(
-                            hintStyle: TextStyle(fontSize: ScreenUtil().setSp(13)),
-                            border: OutlineInputBorder(),
-                            contentPadding: EdgeInsets.only(left: 10),
-                            hintText:bankCard["tip"],
-                            prefixIcon: bankCard["icon"],
-
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
               ],
             ),
             Container(
@@ -337,15 +235,10 @@ class editCard_ extends State<editCard> {
                   onTap: () async {
                     var phone = phoneData["value"];
                     var real_name = realName["value"];
-                    var id_card = idCard["value"];
-                    var bank_name = bankName["value"];
-                    var bank_branch = branchName["value"];
-                    var bank_card = bankCard["value"];
+
                     if (!checkExist(phone) ||
-                        !checkExist(real_name) ||
-                        !checkExist(id_card) ||
-                        !checkExist(bank_name) ||
-                        !checkExist(bank_card)) {
+                        !checkExist(real_name)
+                     ) {
                       Toast.toast(context, msg: "请输入完整信息");
                       return;
                     }
@@ -355,8 +248,8 @@ class editCard_ extends State<editCard> {
                         "user/edit_card",
                         params: {
                           "phone": phone, "real_name": real_name,
-                          "id_card":id_card,"bank_name":bank_name,
-                          "bank_branch":bank_branch,"bank_card":bank_card
+
+
                         },
                         withLoading: true);
                     if (result.code == 200) {
@@ -391,9 +284,7 @@ class editCard_ extends State<editCard> {
                     margin: EdgeInsets.only(bottom: 5),
                     child: Text("温馨提示："),
                   ),
-                  Text("1、我们承若对您的个人信息进行保密，请放心认证。"),
-                  Text("2、以上信息仅用于提款到银行卡，请真实填写否则将无法绑定信息，真实姓名须同银行卡户名一致"),
-                  Text("3、除银行卡外，信息填写后将无法再次修改，请确保填写正确"),
+                  Text("我们承若对您的个人信息进行保密，请放心认证。"),
                 ],
               ),
             )
