@@ -337,7 +337,6 @@ class Login_ extends State<flowdetail> {
 
                                          setState(() {
                                            this.page = e;
-
                                          });
 
                                        },
@@ -357,10 +356,8 @@ class Login_ extends State<flowdetail> {
                                    }).toList(),
                                  ),
                                  Visibility(
-
                                    visible: this.page==0,
                                    child: Container(
-                                     
                                      margin: EdgeInsets.only(top: 50,bottom: 70),
                                      child: Row(
                                        mainAxisAlignment: MainAxisAlignment.center,

@@ -941,8 +941,6 @@ if(order["mode"] == "4"){
         }else{
           es = {};
         }
-
-
       }else{
         game = {};
         es = {};

@@ -214,7 +214,7 @@ class _StockRankList extends State<myorder> with AutomaticKeepAliveClientMixin{
                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                    children: <Widget>[
                                      Text(ls[e2]["mode"]=="1"?"普通订单":ls[e2]["mode"]=="2"?"发起订单":ls[e2]["mode"]=="4"?"优化订单":"跟买订单",style: TextStyle(color: ls[e2]["mode"]=="2"?Colors.orange:Colors.grey),),
-                                     Text(ls[e2]["state"] == 1?"未中奖":ls[e2]["state"] == -1?"待开奖":ls[e2]["state"] == 0?ls[e2]["flag"]=="pl"?"出票中":"未开奖":ls[e2]["state"] == 2?"中奖"+ls[e2]["award_money"].toStringAsFixed(2)+"元":"",style: TextStyle(color: ls[e2]["state"] == 2?Colors.red:Colors.grey),),
+                                     Text(ls[e2]["state"] == 1?"未中奖":ls[e2]["state"] == -1?ls[e2]["flag"]=="pl"?"待开奖":"出票中":ls[e2]["state"] == 0?ls[e2]["flag"]=="pl"?"出票中":"未开奖":ls[e2]["state"] == 2?"中奖"+ls[e2]["award_money"].toStringAsFixed(2)+"元":"",style: TextStyle(color: ls[e2]["state"] == 2?Colors.red:Colors.grey),),
                                    ],
                                  ),
                                )
