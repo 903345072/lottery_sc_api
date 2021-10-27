@@ -229,7 +229,13 @@ class _StockRankList extends State<mycash> with AutomaticKeepAliveClientMixin{
                                      Row(
                                        children: <Widget>[
                                          Text("类型:  "),
-                                         Text(ls[e2]["type"]=="buy_lottery"?"购彩":ls[e2]["type"]=="win_prize"?"中奖":ls[e2]["type"]=="back_money"?"返佣":ls[e2]["type"]=="extract"?"提款":"充值")
+                                         Text(ls[e2]["type"]=="buy_lottery"?"购彩":ls[e2]["type"]=="win_prize"?"中奖":ls[e2]["type"]=="back_money"?"返佣":ls[e2]["type"]=="extract"?"提款":"充值"),
+                                         (ls[e2]["type"]=="extract" && ls[e2]["pm"]==0)? Container(
+                                           padding: EdgeInsets.only(left: 10),
+                                           child: ls[e2]["tx_state"]==-1 ?Text("未通过"):ls[e2]["tx_state"]==0?Text("审核中"):Text("已通过"),
+                                         ):Container(
+                                           padding: EdgeInsets.only(left: 10),
+                                         )
                                        ],
                                      )
                                    ],

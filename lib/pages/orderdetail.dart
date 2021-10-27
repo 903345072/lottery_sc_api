@@ -150,6 +150,12 @@ class hangqing_ extends State<orderdetail>{
                           children: <Widget>[
                             Image.asset("img/weikaijiang.png",fit: BoxFit.fill,width: 70),
                           ],
+                        ):order["state"] == -1?Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image.asset("img/chupiaozhong.png",fit: BoxFit.fill,width: 70),
+                          ],
                         ):Container()
                       ],
                     ),

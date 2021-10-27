@@ -18,7 +18,7 @@ class cashlist extends StatefulWidget{
 
 }
 class hangqing_ extends State<cashlist>{
-  List<String> containers = ["全部","购彩","充值","中奖","提款",];
+  List<String> containers = ["全部","购彩","充值","中奖","提款","佣金"];
   int page = 0;
   List<TextStyle> ts = [TextStyle()];
   @override
@@ -102,6 +102,7 @@ class hangqing_ extends State<cashlist>{
                 mycash(type: "recharge",),
                 mycash(type: "win_prize",),
                 mycash(type: "extract",),
+                mycash(type: "back_money",),
               ],
             ),
           )
