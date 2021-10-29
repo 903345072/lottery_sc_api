@@ -104,6 +104,10 @@ class Login_ extends State<cash> {
                 Container(
                   margin: EdgeInsets.only(left: 5, top: 15, right: 5),
                   child: Text("当前可提现金额:  "+now_money.toString()),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 5, top: 15, right: 5),
+                  child: Text("提现时间:周一至周五 10:00-18:00",style: TextStyle(color: Colors.grey),),
                 )
 
               ],

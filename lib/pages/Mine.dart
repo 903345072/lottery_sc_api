@@ -527,7 +527,39 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                         ],
                                       ),
                                     ),
-                                  )
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: GestureDetector(
+                                      onTap: ()async{
+                                        ResultData res = await HttpManager.getInstance().get("appversion",withLoading: true);
+                                        String appversion = res.data["data"];
+                                        String version;
+                                        PackageInfo packageInfo = await PackageInfo.fromPlatform();
+                                        version = packageInfo.version;
+                                        if(version != appversion){
+                                          const url = 'http://zhongyaozhubao.com/fhu03';
+                                          EventDioLog("提示","发现新版本,是否前往升级?",context,()async{
+                                            if (await canLaunch(url)) {
+                                              await launch(url);
+                                            } else {
+                                              throw 'Could not launch $url';
+                                            }
+                                          }).showDioLog();
+                                        }else{
+                                          Toast.toast(context,msg: "已是最新版本");
+                                        }
+                                      },
+                                      child: Wrap(
+                                        spacing: 15,
+                                        children: <Widget>[
+                                          Icon(Icons.update,size: 18,),
+                                          Text("检查更新"),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+
                                 ],
                               ),
                             ),
@@ -536,7 +568,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                               child: Container(
                                 child: GestureDetector(
                                   onTap: (){
-                                    Future res = Clipboard.setData(ClipboardData(text: '273777372'));
+                                    Future res = Clipboard.setData(ClipboardData(text: '1626208094'));
                                     res.whenComplete(() =>Toast.toast(context,msg: "复制成功"));
                                   },
                                   child: Container(
@@ -554,7 +586,6 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                 children: <Widget>[
                                   Text("当前版本:",style: TextStyle(color: Colors.grey,fontSize: 12),),
                                   Text("v"+version,style: TextStyle(color: Colors.grey,fontSize: 12)),
-
                                 ],
                               ),
                             )

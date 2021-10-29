@@ -256,7 +256,7 @@ class Login_ extends State<recharge> {
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 10),
-                  child: Text("提示:充值无手续费，最低充值1元"),
+                  child: Text("提示:充值无手续费，最低充值20元"),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 10,bottom: 10),
@@ -270,7 +270,7 @@ class Login_ extends State<recharge> {
 
                 Container(
                   margin: EdgeInsets.only(left: 10),
-                  child: Text("2、为充值成功后，若金额未到账，请等待1-2分钟，或联系客服QQ273777372",style: TextStyle(fontSize: 12),),
+                  child: Text("2、为充值成功后，若金额未到账，请等待1-2分钟，或联系客服QQ1626208094",style: TextStyle(fontSize: 12),),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 10),
