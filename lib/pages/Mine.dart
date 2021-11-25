@@ -26,6 +26,7 @@ import 'package:flutterapp2/utils/Rute.dart';
 import 'package:flutterapp2/utils/Toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'FlowOrderSetting.dart';
 import 'exchange.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:package_info/package_info.dart';
@@ -242,31 +243,7 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                         )
                                       ],
                                     ),
-                                    Row(
-                                      children: <Widget>[
-                                        Container(
-                                          child: Text("自动跟单",style: TextStyle(fontSize: 12,color: Colors.white),),
-                                        ),
-                                        Switch(
-                                          activeColor: Colors.red,
-                                          onChanged: (bool value)async {
 
-                                            ResultData result = await HttpManager.getInstance().post(
-                                                "set_auto_order",
-                                                params: {"value":value},
-                                                withLoading: true);
-                                            if (result.code == 200) {
-                                              Toast.toast(context, msg: "操作成功");
-                                              setState(()  {
-                                                auto_order = value;
-                                              });
-                                            } else {
-                                              Toast.toast(context, msg: result.msg);
-                                            }
-                                          }, value: auto_order,
-                                        )
-                                      ],
-                                    )
                                   ],
                                 ),
                               ),
@@ -494,29 +471,6 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                     padding: EdgeInsets.only(top: 5),
                                     child: GestureDetector(
                                       onTap: () async {
-
-                                        ResultData result = await HttpManager.getInstance().get(
-                                            "logout",withLoading: false);
-                                        if(result.code == 200){
-                                          TokenStore().clearToken("token");
-                                          TokenStore().clearToken("is_login");
-                                          JumpAnimation().jump(Login(), context);
-                                        }
-                                      },
-                                      child: Wrap(
-                                        spacing: 15,
-                                        children: <Widget>[
-                                          Icon(const IconData(0xe604,fontFamily: "iconfont"),size: 18,),
-                                          Text("退出登录"),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(top: 5),
-                                    child: GestureDetector(
-                                      onTap: () async {
-
                                         JumpAnimation().jump(myGroup(), context);
                                       },
                                       child: Wrap(
@@ -560,6 +514,44 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                     ),
                                   ),
 
+                                  Container(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: GestureDetector(
+                                      onTap: () async {
+
+                                        JumpAnimation().jump(FlowOrderSetting(), context);
+                                      },
+                                      child: Wrap(
+                                        spacing: 15,
+                                        children: <Widget>[
+                                          Icon(Icons.settings,size: 18,),
+                                          Text("跟单设置"),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: GestureDetector(
+                                      onTap: () async {
+
+                                        ResultData result = await HttpManager.getInstance().get(
+                                            "logout",withLoading: false);
+                                        if(result.code == 200){
+                                          TokenStore().clearToken("token");
+                                          TokenStore().clearToken("is_login");
+                                          JumpAnimation().jump(Login(), context);
+                                        }
+                                      },
+                                      child: Wrap(
+                                        spacing: 15,
+                                        children: <Widget>[
+                                          Icon(const IconData(0xe604,fontFamily: "iconfont"),size: 18,),
+                                          Text("退出登录"),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

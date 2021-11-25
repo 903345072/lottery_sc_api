@@ -19,53 +19,53 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../main.dart';
 
 class flowInstruct extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return Login_();
-  }
+    @override
+    State<StatefulWidget> createState() {
+        // TODO: implement createState
+        return Login_();
+    }
 }
 
 class Login_ extends State<flowInstruct> {
-  String old_pwd;
-  String new_pwd;
-  String re_pwd;
-  bool check = false;
-  FocusNode _commentFocus;
+    String old_pwd;
+    String new_pwd;
+    String re_pwd;
+    bool check = false;
+    FocusNode _commentFocus;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _commentFocus = FocusNode();
-  }
+    @override
+    void initState() {
+        // TODO: implement initState
+        super.initState();
+        _commentFocus = FocusNode();
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
+    @override
+    Widget build(BuildContext context) {
+        ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
 
-    // TODO: implement build
-    return FlutterEasyLoading(
-      child: Scaffold(
-        appBar: AppBar(
+        // TODO: implement build
+        return FlutterEasyLoading(
+            child: Scaffold(
+                appBar: AppBar(
 
-          centerTitle: true,
-          elevation: 0,
-          iconTheme: IconThemeData(
-            size: 25.0,
-            color: Colors.white, //修改颜色
-          ),
-          backgroundColor: Color(0xfffa2020),
-          title: Text("用户注册协议",style: TextStyle(fontSize: ScreenUtil().setSp(18)),),
-        ),
-        backgroundColor: Colors.white,
-        body: ListView(
-          children: <Widget>[
-            Container(
+                    centerTitle: true,
+                    elevation: 0,
+                    iconTheme: IconThemeData(
+                        size: 25.0,
+                        color: Colors.white, //修改颜色
+                    ),
+                    backgroundColor: Color(0xfffa2020),
+                    title: Text("用户注册协议",style: TextStyle(fontSize: ScreenUtil().setSp(18)),),
+                ),
+                backgroundColor: Colors.white,
+                body: ListView(
+                    children: <Widget>[
+                        Container(
 
-              child: Center(
-                child: Html(
-                  data: """ 
+                            child: Center(
+                                child: Html(
+                                    data: """ 
                   <P>1、本平台注册用户，申请成为大神后即有资格进行发单;</P>  
                   <P>2、发单者所发单中奖，并【税后奖金-（税后奖金*发单提成）>投注金，则有佣金提成;</P>  
                   <P>3、几中几∶指发单者近七单已开奖发单方案数量及中奖方案数量;</P>  
@@ -84,13 +84,13 @@ class Login_ extends State<flowInstruct> {
                   <P3>4、跟单者跟投方案中奖后，则从该方案奖金里扣除发单者所设佣金并返于发单者。
 本规则最终解释权归本平台所有，如有疑问请拨打客服电话。</P>  
                   """,
-                ),
-              ),
-            )
+                                ),
+                            ),
+                        )
 
-          ],
-        ),
-      ),
-    );
-  }
+                    ],
+                ),
+            ),
+        );
+    }
 }
