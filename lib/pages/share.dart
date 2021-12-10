@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp2/net/HttpManager.dart';
 import 'package:flutterapp2/net/ResultData.dart';
 import 'package:flutterapp2/utils/Toast.dart';
@@ -29,6 +30,7 @@ class _share extends State<share>{
   }
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 417, height: 867)..init(context);
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -50,31 +52,11 @@ class _share extends State<share>{
               width: double.infinity,
               child: Image.asset("img/share.jpg",fit: BoxFit.fill,),
             ),
-            Positioned(
-              left: 80,
-              top: 258,
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: Text(invite_code,style: TextStyle(letterSpacing: 5),),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      Future res = Clipboard.setData(ClipboardData(text: invite_code));
-                      res.whenComplete(() =>Toast.toast(context,msg: "复制成功"));
-                    },
-                    child: Container(
-                      padding: EdgeInsets.only(left: 80),
-                      child: Text("                       "),
-                    ),
-                  )
-                ],
-              ),
-            ),
+
             url!=""?Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(top: 255),
-              child: Image.network(url,width: 130,height: 130,),
+              margin: EdgeInsets.only(top: ScreenUtil().setHeight(280)),
+              child: Image.network(url,width: 165,height: 165,),
             ):Container()
           ],
         ),
