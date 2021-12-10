@@ -12,18 +12,16 @@ class FlowOrderSetting extends StatefulWidget{
 class _FlowOrderSetting extends State<FlowOrderSetting>{
   bool auto_order = false;
   int flow_type = 1;
-  double auto_flow_amount = 300;
+  double auto_flow_amount = 600;
   getData() async{
     ResultData res = await  HttpManager.getInstance().get("userInfo",withLoading: false);
     if(res.data != null){
       setState(() {
-
         auto_order = res.data["auto_order"]==0?false:true;
         auto_flow_amount = double.parse(res.data["auto_flow_amount"]) ;
         flow_type = res.data["flow_type"];
       });
     }
-
   }
   @override
   void initState() {
@@ -82,7 +80,7 @@ class _FlowOrderSetting extends State<FlowOrderSetting>{
                 ),
                 Row(
                   children: <Widget>[
-                    Text("高额收益跟单"),
+                    Text("2.0收益跟单"),
                     Radio(
                       activeColor: Colors.red,
                       value:2,
@@ -105,23 +103,15 @@ class _FlowOrderSetting extends State<FlowOrderSetting>{
                   underline: Container(),
                   value: auto_flow_amount,
                   items: [
-                    DropdownMenuItem(value:300.0,child: Container(padding:EdgeInsets.only(right: 60),child: Text('300',style: TextStyle(fontSize: 15),),)),
                     DropdownMenuItem(value:600.0,child: Container(child: Text('600',style: TextStyle(fontSize: 15),),)),
-                    DropdownMenuItem(value:900.0,child: Container(child: Text('900',style: TextStyle(fontSize: 15),),)),
-                    DropdownMenuItem(value:1200.0,child: Container(child: Text('1200',style: TextStyle(fontSize: 15),),)),
-                    DropdownMenuItem(value:1500.0,child: Container(child: Text('1500',style: TextStyle(fontSize: 15),),)),
-                    DropdownMenuItem(value:1800.0,child: Container(child: Text('1800',style: TextStyle(fontSize: 15),),)),
-                    DropdownMenuItem(value:2100.0,child: Container(child: Text('2100',style: TextStyle(fontSize: 15),),)),
-                    DropdownMenuItem(value:2400.0,child: Container(child: Text('2400',style: TextStyle(fontSize: 15),),)),
-                    DropdownMenuItem(value:2700.0,child: Container(child: Text('2700',style: TextStyle(fontSize: 15),),)),
                     DropdownMenuItem(value:3000.0,child: Container(child: Text('3000',style: TextStyle(fontSize: 15),),)),
+                    DropdownMenuItem(value:6000.0,child: Container(child: Text('6000',style: TextStyle(fontSize: 15),),)),
+                    DropdownMenuItem(value:30000.0,child: Container(child: Text('30000',style: TextStyle(fontSize: 15),),)),
                   ],
                   onChanged: (e){
-
                     setState(() {
                       auto_flow_amount = e;
                     });
-
                   },
                 )
               ],

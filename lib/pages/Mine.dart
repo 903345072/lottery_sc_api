@@ -19,6 +19,7 @@ import 'package:flutterapp2/pages/kefu.dart';
 import 'package:flutterapp2/pages/orderlist.dart';
 import 'package:flutterapp2/pages/recharge.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterapp2/pages/share.dart';
 import 'package:flutterapp2/utils/EventDioLog.dart';
 import 'package:flutterapp2/utils/ImageCompressUtil.dart';
 import 'package:flutterapp2/utils/JumpAnimation.dart';
@@ -488,11 +489,12 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                       onTap: ()async{
                                         ResultData res = await HttpManager.getInstance().get("appversion",withLoading: true);
                                         String appversion = res.data["data"];
+                                        String url = res.data["url"];
+
                                         String version;
                                         PackageInfo packageInfo = await PackageInfo.fromPlatform();
                                         version = packageInfo.version;
                                         if(version != appversion){
-                                          const url = 'http://zhongyaozhubao.com/fhu03';
                                           EventDioLog("提示","发现新版本,是否前往升级?",context,()async{
                                             if (await canLaunch(url)) {
                                               await launch(url);
@@ -526,6 +528,22 @@ class _Mine extends State<Mine>  with SingleTickerProviderStateMixin ,AutomaticK
                                         children: <Widget>[
                                           Icon(Icons.settings,size: 18,),
                                           Text("跟单设置"),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: GestureDetector(
+                                      onTap: () async {
+
+                                        JumpAnimation().jump(share(), context);
+                                      },
+                                      child: Wrap(
+                                        spacing: 15,
+                                        children: <Widget>[
+                                          Icon(Icons.share,size: 18,),
+                                          Text("我的推广"),
                                         ],
                                       ),
                                     ),
